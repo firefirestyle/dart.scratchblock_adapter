@@ -1,0 +1,9 @@
+name: scratchblock_dartada
+description: scrachblock dart adapter
+author: kyorohiro@gmail.com
+version: 0.0.1
+dependencies:
+ browser: any
+ dart_to_js_script_rewriter: any
+transforms:
+- dart_to_js_script_rewriter
