@@ -6,11 +6,16 @@ void main() {
   html.document.body.appendHtml(["""<div id="preview"></div>""",].join(""));
   var previewElm = html.document.querySelector("#preview");
   previewElm.appendHtml(
-      (new scratch.ScratchBlocks()..addLang("jp")).bakeSVG([
+      (new scratch.ScratchBlocks()..addLang("de")).bakeSVG([
         """when flag clicked""", //
         """@greenFlag がクリックされたとき"""
       ].join("\r\n")),
       treeSanitizer: html.NodeTreeSanitizer.trusted);
 
-//print(""" >>> ${(new scratch.ScratchBlocks().getLandDict(scratch.ScratchBlocks.japanese))}""");
+      var a = (new scratch.ScratchBlocks()).translateSource([
+        """when flag clicked""", //
+      //  """@greenFlag がクリックされたとき"""
+    ].join("\r\n"), scratch.ScratchBlocks.japanese);
+      print(">> ${a.toString()}");
+
 }

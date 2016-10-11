@@ -2679,7 +2679,8 @@ function render (str, options) {
   return strSvg;
 }
 module.exports = render;
-
+module.exports.parse = parse;
+module.exports.allLanguages = allLanguages;
 /**
  * Render all matching elements in page to shiny scratch blocks.
  * Accepts a CSS selector as an argument.

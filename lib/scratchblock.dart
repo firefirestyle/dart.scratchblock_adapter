@@ -6,7 +6,7 @@ class ScratchBlocks {
   static final String spanish = "sp";
   static final String french = "fe";
   static final String china = "ze_CN";
-  static final String japanese = "jp";
+  static final String japanese = "ja";
   static final String dutch = "nl";
   static final String portigese = "pt";
   static final String italiano = "it";
@@ -19,23 +19,18 @@ class ScratchBlocks {
   static final String catalan = "ca";
   static final String indonesia = "id";
   static final String english = "en";
-/*
-  String getLandDict(String lang){
-    js.JsObject sb2Obj = js.context["scratchblocks"];
-    print(""" ${sb2Obj}""");
-    js.JsObject langDict = (sb2Obj["_translations"])[lang];
-    return langDict.toString();
-  }*/
-  Map<String,List<String>> _language = {"language":[english]};
+
+
+  Map<String,List<String>> _language = {"languages":[]};
   void addLang(String langage) {
-    var langs = _language["language"];
+    var langs = _language["languages"];
     if(false ==  langs.contains(langage)) {
       langs.add(langage);
     }
   }
 
   void deleteLand(String langage) {
-    var langs = _language["language"];
+    var langs = _language["languages"];
     if(true ==  langs.contains(langage)) {
       langs.remove(langage);
     }
@@ -43,5 +38,12 @@ class ScratchBlocks {
 
   String bakeSVG(String source) {
     return js.context.callMethod("scratchblocks", [source,_language]);
+  }
+
+  String translateSource(String source, String language){
+    js.JsObject sb2Obj2 = js.context["scratchblocks"];
+    js.JsObject s3 = sb2Obj2.callMethod("parse", [source,_language]); // "parse"];
+    s3.callMethod("translate",[js.context["scratchblocks"]["allLanguages"][language]]);
+    return sb2Obj2.callMethod("stringify",[s3]);
   }
 }
