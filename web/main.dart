@@ -1,11 +1,9 @@
 import 'dart:js' as js;
 import 'dart:html' as html;
-void main() {
-   print("hello world");
-   js.JsObject obj = js.context.callMethod("scratchblocks",["when flag clicked"]);
+import 'package:scratchblock_dartada/scratchblock.dart' as scratch;
 
+void main() {
    html.document.body.appendHtml("""<div id="preview"></div>""");
    var previewElm = html.document.querySelector("#preview");
-   print("hello world"+obj.toString());
-   previewElm.appendHtml(obj.toString(), treeSanitizer: html.NodeTreeSanitizer.trusted);
+   previewElm.appendHtml((new scratch.ScratchBlocks()).bakeSVG("when flag clicked"), treeSanitizer: html.NodeTreeSanitizer.trusted);
 }
